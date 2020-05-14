@@ -16,6 +16,7 @@ class App:
         self.root.title('Have a Happy Thursday!!')
         self.root.iconbitmap('sun.ico')
         self.sequence = [ImageTk.PhotoImage(img) for img in ImageSequence.Iterator(Image.open('bear.gif'))]
+        self.fps = Image.open('bear.gif').info['duration']
         self.index = 0
         self.title = tk.Label(self.root, text="Happy Thursday!!", font=("Bodoni MT", 40),
             background='#A37A3B', foreground='#FFF', anchor=tk.CENTER)
@@ -34,7 +35,7 @@ class App:
             self.index = 0
         self.gif.config(image=self.sequence[self.index])
         self.index += 1
-        self.root.after(22, self.animate)
+        self.root.after(self.fps, self.animate)
 
 
 if __name__ == '__main__':
